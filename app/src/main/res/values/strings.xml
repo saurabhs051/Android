@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FirstApp</string>
+    <string name="click">Click</string>
+    <string name="hello_there">hello there</string>
+    <string name="hello">hello bro</string>
+    <string name="phy">Physics</string>
+    <string name="Chem">Chemistry</string>
+    <string name="Maths">Maths</string>
+    <string name="write_something">Write Something</string>
+    <string name="click_here">Click Here</string>
+</resources>

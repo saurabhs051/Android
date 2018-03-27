@@ -6,13 +6,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private EditText myet;
     private TextView mytv;
     private Button mybtn;
+    int count=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 mytv.setText("");
                 try{
                     mytv.setText(String.valueOf(evaluate(myet.getText().toString())));
+                    count++;
                     Toast.makeText(getBaseContext(),"Thank You !!",Toast.LENGTH_LONG).show();
                 }catch (Exception e){
                     Toast.makeText(getBaseContext(),"Wrong Format",Toast.LENGTH_LONG).show();
@@ -37,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /////////////////////////////////////////////
-    public static int evaluate(String expression)
+    public int evaluate(String expression)
     {
+        DatabaseReference myRef;
+        myRef= FirebaseDatabase.getInstance().getReference("Equations");
+
         //FirebaseDatabase fd=FirebaseDatabase.getInstance("https://focused-world-197101.firebaseio.com");
         //DatabaseReference myref=fd.getReference(expression);
         char[] tokens = expression.toCharArray();
@@ -81,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
             values.push(applyOp(ops.pop(), values.pop(), values.pop()));
 
         //myref.setValue(k);
-        return values.pop();
+        int k=values.pop();
+        Info info=new Info(expression,k);
+        myRef.child(Integer.toString(count)).setValue(info);
+        return k;
     }
 
     public static boolean hasPrecedence(char op1, char op2)

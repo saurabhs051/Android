@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText myet;
     private TextView mytv;
     private Button mybtn;
-    int count=1;
+    static int count=1;
 
 
     @Override

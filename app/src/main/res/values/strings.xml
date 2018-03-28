@@ -8,4 +8,8 @@
     <string name="Maths">Maths</string>
     <string name="write_something">Write Something</string>
     <string name="click_here">Click Here</string>
+    <string name="x">x</string>
+    <string name="y">y</string>
+    <string name="z">z</string>
+    <string name="w">w</string>
 </resources>
